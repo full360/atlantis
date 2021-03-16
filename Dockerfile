@@ -5,5 +5,5 @@ RUN apk --no-cache add \
     go \
     openssh-client \
     zip \
-  && ln -s $(which python3) /usr/bin/python
+  && ln -s $(which python3) /usr/bin/python \
   && rm -rf /tmp/tmprt /var/cache/apk/*
