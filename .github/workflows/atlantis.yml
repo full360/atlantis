@@ -20,6 +20,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Docker meta
+        id: docker_meta
+        uses: crazy-max/ghaction-docker-meta@v1
+        with:
+          images: full360/atlantis
+          tag-sha: true
+          tag-latest: true
+          tag-schedule: {{date 'YYYYMMDD'}}
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -36,6 +45,5 @@ jobs:
           file: ./Dockerfile
           pull: true
           push: true
-          tags: |
-            full360/atlantis:latest
+          tags: ${{ steps.docker_meta.outputs.tags }}
 
